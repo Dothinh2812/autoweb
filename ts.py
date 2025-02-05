@@ -5,8 +5,10 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 chrome_options = ChromeOptions()
 chrome_options.add_argument("--headless")
-chrome_options.add_argument("--disable-gpu")  # Recommended for headless
-chrome_options.add_argument("--disable-dev-shm-usage")  # Add this line!
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.binary_location = "/usr/bin/chromium-browser"  # Add this line!
 
 service = ChromeService(executable_path=ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=chrome_options)
