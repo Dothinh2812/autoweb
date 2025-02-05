@@ -5,14 +5,15 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 chrome_options = ChromeOptions()
 chrome_options.add_argument("--headless")
-chrome_options.add_argument("--disable-gpu")  # Thường cần thiết trong headless
+chrome_options.add_argument("--disable-gpu")  # Recommended for headless
+chrome_options.add_argument("--disable-dev-shm-usage")  # Add this line!
 
-service = ChromeService(executable_path=ChromeDriverManager().install()) # WebDriverManager sẽ tự tìm chromedriver tương thích
+service = ChromeService(executable_path=ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
 try:
     driver.get("https://www.google.com")
-    print("Tiêu đề trang Google:", driver.title)  # Kiểm tra xem trang có tải thành công không
+    print("Tiêu đề trang Google:", driver.title)
 except Exception as e:
     print("Lỗi khi tải trang:", e)
 finally:
